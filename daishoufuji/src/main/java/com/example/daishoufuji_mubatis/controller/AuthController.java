@@ -35,5 +35,7 @@ public String registSubmit() {
 public String correct() {
 	return "auth/regist";
 }
-
+@PostMapping("/doregist")
+public String doRegistSubmit() {
+  return "auth/login";
 }
