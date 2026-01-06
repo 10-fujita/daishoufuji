@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ランニング設定 - 腱康</title>
+    <link rel="stylesheet" href="../../../static/css/run-setting.css">
+</head>
+<body>
+
+    <header class="header">
+        <h1 class="logo">腱康</h1>
+    </header>
+
+    <main class="main">
+
+        <section class="setting-container">
+
+            <h2 class="setting-title">ランニング設定</h2>
+
+            <!-- 目標カロリー入力 -->
+            <div class="calorie-box">
+                <label for="calorie">目標消費カロリー（kcal）</label>
+                <input type="number" id="calorie" name="calorie" placeholder="例：300" required>
+                <button class="btn check-btn">相棒AIよ、これでいいか？</button>
+            </div>
+
+            <!-- AIキャラクターとコメント -->
+            <div class="ai-area">
+                <img src="../../../static/img/ai_character.png" alt="AIキャラクター" class="ai-image">
+                <div class="ai-comment">
+                    <p id="ai-text">目標カロリーを入力するとアドバイスします！</p>
+                </div>
+            </div>
+
+            <!-- 地図表示 -->
+            <h3 class="map-title">現在地</h3>
+            <div class="map-box">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3280.123456789!2d130.4017!3d33.5902"
+                    width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy">
+                </iframe>
+            </div>
+
+            <!-- 戻るボタン -->
+            <div class="back-area">
+                <a href="mypage.html" class="back-btn">マイページに戻る</a>
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <p>© 2026 腱康</p>
+    </footer>
+
+</body>
+</html>
