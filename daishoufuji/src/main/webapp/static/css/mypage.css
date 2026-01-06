@@ -1,0 +1,89 @@
+/* 全体リセット */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Helvetica", "Arial", sans-serif;
+    background: #f7f9fc;
+    color: #333;
+}
+
+/* ヘッダー */
+.header {
+    padding: 16px;
+    text-align: center;
+    background: #ffffff;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2a7cf7;
+}
+
+/* メイン */
+.main {
+    padding: 40px 20px;
+}
+
+/* マイページコンテナ */
+.mypage-container {
+    max-width: 420px;
+    margin: 0 auto;
+}
+
+/* AIキャラクター */
+.ai-area {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.ai-image {
+    width: 180px;
+    height: auto;
+    margin-bottom: 16px;
+}
+
+.ai-comment {
+    background: #fff;
+    padding: 16px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    font-size: 15px;
+    color: #333;
+}
+
+/* メニューエリア */
+.menu-area {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.menu-btn {
+    display: block;
+    background: #2a7cf7;
+    color: #fff;
+    padding: 14px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.menu-btn:hover {
+    background: #1f63c9;
+}
+
+/* フッター */
+.footer {
+    text-align: center;
+    padding: 16px;
+    font-size: 12px;
+    color: #777;
+}

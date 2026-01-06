@@ -1,0 +1,107 @@
+/* 全体リセット */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Helvetica", "Arial", sans-serif;
+    background: #f7f9fc;
+    color: #333;
+}
+
+/* ヘッダー */
+.header {
+    padding: 16px;
+    text-align: center;
+    background: #ffffff;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2a7cf7;
+}
+
+/* メイン */
+.main {
+    padding: 40px 20px;
+}
+
+/* ログインコンテナ */
+.login-container {
+    max-width: 360px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.login-title {
+    text-align: center;
+    font-size: 22px;
+    margin-bottom: 20px;
+    color: #2a7cf7;
+}
+
+/* フォーム */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.login-form label {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.login-form input {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+/* ログインボタン */
+.login-btn {
+    background: #2a7cf7;
+    color: #fff;
+    border: none;
+    padding: 14px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.login-btn:hover {
+    background: #1f63c9;
+}
+
+/* パスワード再設定リンク */
+.reset-area {
+    text-align: center;
+    margin-top: 16px;
+}
+
+.reset-link {
+    color: #2a7cf7;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.reset-link:hover {
+    text-decoration: underline;
+}
+
+/* フッター */
+.footer {
+    text-align: center;
+    padding: 16px;
+    font-size: 12px;
+    color: #777;
+}

@@ -1,0 +1,108 @@
+/* 全体リセット */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Helvetica", "Arial", sans-serif;
+    background: #f7f9fc;
+    color: #333;
+}
+
+/* ヘッダー */
+.header {
+    padding: 16px;
+    text-align: center;
+    background: #ffffff;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2a7cf7;
+}
+
+/* メイン */
+.main {
+    padding: 40px 20px;
+}
+
+/* 新規登録コンテナ */
+.signup-container {
+    max-width: 400px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.signup-title {
+    text-align: center;
+    font-size: 22px;
+    margin-bottom: 20px;
+    color: #2a7cf7;
+}
+
+/* フォーム */
+.signup-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.signup-form label {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.signup-form input,
+.signup-form select {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+/* 確認ボタン */
+.confirm-btn {
+    background: #2a7cf7;
+    color: #fff;
+    border: none;
+    padding: 14px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.confirm-btn:hover {
+    background: #1f63c9;
+}
+
+/* トップページに戻る */
+.back-area {
+    text-align: center;
+    margin-top: 16px;
+}
+
+.back-link {
+    color: #2a7cf7;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+/* フッター */
+.footer {
+    text-align: center;
+    padding: 16px;
+    font-size: 12px;
+    color: #777;
+}
