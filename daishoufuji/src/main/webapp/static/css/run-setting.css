@@ -1,0 +1,148 @@
+/* 全体リセット */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Helvetica", "Arial", sans-serif;
+    background: #f7f9fc;
+    color: #333;
+}
+
+/* ヘッダー */
+.header {
+    padding: 16px;
+    text-align: center;
+    background: #ffffff;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2a7cf7;
+}
+
+/* メイン */
+.main {
+    padding: 40px 20px;
+}
+
+/* コンテナ */
+.setting-container {
+    max-width: 420px;
+    margin: 0 auto;
+}
+
+/* タイトル */
+.setting-title {
+    text-align: center;
+    font-size: 22px;
+    margin-bottom: 20px;
+    color: #2a7cf7;
+}
+
+/* カロリー入力 */
+.calorie-box {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    margin-bottom: 24px;
+}
+
+.calorie-box label {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.calorie-box input {
+    width: 100%;
+    padding: 12px;
+    margin-top: 8px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.check-btn {
+    width: 100%;
+    margin-top: 14px;
+    background: #2a7cf7;
+    color: #fff;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.check-btn:hover {
+    background: #1f63c9;
+}
+
+/* AIキャラクター */
+.ai-area {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.ai-image {
+    width: 180px;
+    height: auto;
+    margin-bottom: 16px;
+}
+
+.ai-comment {
+    background: #fff;
+    padding: 16px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    font-size: 15px;
+}
+
+/* 地図 */
+.map-title {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #2a7cf7;
+}
+
+.map-box {
+    background: #fff;
+    padding: 10px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    margin-bottom: 24px;
+}
+
+/* 戻るボタン */
+.back-area {
+    text-align: center;
+}
+
+.back-btn {
+    display: inline-block;
+    background: #2a7cf7;
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.back-btn:hover {
+    background: #1f63c9;
+}
+
+/* フッター */
+.footer {
+    text-align: center;
+    padding: 16px;
+    font-size: 12px;
+    color: #777;
+}
