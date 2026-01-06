@@ -1,0 +1,239 @@
+/* ---- ベース設定 ---- */
+:root {
+  --bg: #4f5460;            /* 深いネイビー */
+  --panel: #111827;         /* ダークパネル色 */
+  --text: #e5e7eb;          /* 文字色（淡いグレー） */
+  --muted: #9ca3af;
+  --accent: #22c55e;        /* ランニング感のあるグリーン */
+  --accent-2: #3b82f6;      /* セカンダリアクセント */
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  color: var(--text);
+  background: radial-gradient(1200px 600px at 50% 20%, #0b1225 0%, var(--bg) 60%, #0a0f1f 100%);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Meiryo", sans-serif;
+}
+
+/* ---- ヘッダー ---- */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  background: linear-gradient(180deg, rgba(17,24,39,0.7), rgba(17,24,39,0.3));
+  backdrop-filter: blur(6px);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.brand { display: flex; align-items: center; gap: 12px; }
+.brand h1 {
+  margin: 0;
+  font-size: 18px;
+  letter-spacing: 0.02em;
+  color: var(--text);
+  font-weight: 600;
+}
+
+.logo-dot {
+  width: 12px; height: 12px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), #16a34a);
+  box-shadow: 0 0 12px rgba(34,197,94,0.7);
+}
+
+.auth { display: flex; gap: 12px; }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+}
+
+.btn-start {
+  color: red;
+  background: linear-gradient(135deg, var(--accent), yellow);
+  box-shadow: 0 8px 20px rgba(34,197,94,0.25);
+}
+.btn-login:hover { transform: translateY(-1px); }
+
+.btn-logout {
+  color: #0a182f;
+  background: linear-gradient(135deg, var(--accent-2), #2563eb);
+  box-shadow: 0 8px 20px rgba(59,130,246,0.25);
+}
+.btn-logout:hover { transform: translateY(-1px); }
+
+/* ---- ヒーロー（中央エリア） ---- */
+.hero {
+  min-height: calc(100vh - 70px);
+  display: grid;
+  place-items: center;
+  padding: 32px 16px;
+}
+
+.runner-scene {
+  width: min(800px, 92vw);
+  background: linear-gradient(180deg, rgba(17,24,39,0.6), rgba(17,24,39,0.3));
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 20px;
+  padding: 36px 24px 28px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+}
+
+/* ---- 地面＆タグライン ---- */
+.ground {
+  position: absolute;
+  left: 0; right: 0; bottom: 24px;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.06), rgba(255,255,255,0.18), rgba(255,255,255,0.06));
+  overflow: visible;
+  margin-bottom: 140px;
+}
+.ground::after {
+  content: "";
+  position: absolute;
+  left: -200%;
+  top: -6px;
+  height: 6px; width: 400%;
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(255,255,255,0.08) 0px,
+    rgba(255,255,255,0.08) 14px,
+    rgba(255,255,255,0.0) 14px,
+    rgba(255,255,255,0.0) 28px
+  );
+  animation: track-move 1.2s linear infinite;
+  pointer-events: none;
+}
+@keyframes track-move {
+  to { transform: translateX(28px); }
+}
+
+.tagline {
+  margin: 16px auto 0;
+  text-align: center;
+  color: lightcoral;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+/* ---- 棒人間（横向きに走る） ---- */
+.stickman {
+  position: relative;
+  width: 140px;
+  height: 160px;
+  margin: 30px auto 50px;
+  transform: translateZ(0);
+  animation: bob 0.6s ease-in-out infinite;
+}
+@keyframes bob {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-3px); }
+  100% { transform: translateY(0); }
+}
+
+/* 頭 */
+.head {
+  position: absolute;
+  right: 60px; top: 10px;
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  border: 3px solid var(--text);
+  box-shadow: 0 0 0 2px rgba(255,255,255,0.08) inset;
+}
+
+/* 胴体（やや前傾） */
+.torso {
+  position: absolute;
+  right: 69px; top: 38px;
+  width: 2px; height: 48px;
+  background: var(--text);
+  transform-origin: top center;
+  transform: rotate(-13deg);
+}
+
+/* 腕 */
+.arm {
+  position: absolute;
+  width: 2px; height: 38px;
+  background: var(--text);
+  top: 44px; left: 72px;
+  transform-origin: top center;
+}
+.arm.left  { transform: rotate(40deg);  animation: arm-left 0.6s ease-in-out infinite; }
+.arm.right { transform: rotate(-45deg); animation: arm-right 0.6s ease-in-out infinite; }
+
+@keyframes arm-left {
+  0%   { transform: rotate(40deg); }
+  50%  { transform: rotate(-25deg); }
+  100% { transform: rotate(40deg); }
+}
+@keyframes arm-right {
+  0%   { transform: rotate(-45deg); }
+  50%  { transform: rotate(30deg); }
+  100% { transform: rotate(-45deg); }
+}
+
+/* 脚（股関節位置） */
+.leg {
+  position: absolute;
+  width: 2px; height: 46px;
+  background: var(--text);
+  top: 76px; left: 78px;
+  transform-origin: top center;
+}
+.leg.left  { transform: rotate(25deg);  animation: leg-left 0.6s ease-in-out infinite; }
+.leg.right { transform: rotate(-30deg); animation: leg-right 0.6s ease-in-out infinite; }
+
+@keyframes leg-left {
+  0%   { transform: rotate(25deg); }
+  50%  { transform: rotate(-40deg); }
+  100% { transform: rotate(25deg); }
+}
+@keyframes leg-right {
+  0%   { transform: rotate(-30deg); }
+  50%  { transform: rotate(35deg); }
+  100% { transform: rotate(-30deg); }
+}
+
+/* 影（スピード感） */
+.shadow {
+  position: absolute;
+  left: 40px; bottom: 30px;
+  width: 60px; height: 8px;
+  background: radial-gradient(50% 50% at 50% 50%, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0) 70%);
+  filter: blur(2px);
+  animation: shadow 0.6s ease-in-out infinite;
+}
+@keyframes shadow {
+  0%   { transform: scaleX(1); opacity: 0.6; }
+  50%  { transform: scaleX(1.08); opacity: 0.5; }
+  100% { transform: scaleX(1); opacity: 0.6; }
+}
+
+/* ---- フッター ---- */
+.footer {
+  text-align: center;
+  color: var(--muted);
+  padding: 20px 0 30px;
+}
+
+/* ---- レスポンシブ微調整 ---- */
+@media (max-width: 420px) {
+  .brand h1 { font-size: 16px; }
+  .runner-scene { padding: 28px 16px 24px; }
+  .stickman { margin: 24px auto 44px; }
+}
