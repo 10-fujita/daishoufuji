@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新規登録 - 腱康</title>
+    <link rel="stylesheet" href="../../../static/css/signup.css">
+</head>
+<body>
+
+    <header class="header">
+        <h1 class="logo">腱康</h1>
+    </header>
+
+    <main class="main">
+
+        <section class="signup-container">
+            <h2 class="signup-title">新規登録</h2>
+
+            <form action="/signup" method="POST" class="signup-form">
+
+                <!-- 基本情報 -->
+                <label for="name">名前</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">メールアドレス</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="weight">体重（kg）</label>
+                <input type="number" id="weight" name="weight" required>
+
+                <label for="height">身長（cm）</label>
+                <input type="number" id="height" name="height" required>
+
+                <!-- 運動量 -->
+                <label for="activity">普段の運動量</label>
+                <select id="activity" name="activity" required>
+                    <option value="">選択してください</option>
+                    <option value="low">ほとんどしない</option>
+                    <option value="medium">週1〜2回</option>
+                    <option value="high">週3回以上</option>
+                </select>
+
+                <!-- 体つきに関する質問 -->
+                <label for="body-type">あなたの体つきに近いもの</label>
+                <select id="body-type" name="body_type" required>
+                    <option value="">選択してください</option>
+                    <option value="slim">細身</option>
+                    <option value="normal">標準</option>
+                    <option value="muscular">筋肉質</option>
+                    <option value="chubby">ややぽっちゃり</option>
+                    <option value="obese">肥満</option>
+                </select>
+
+                <!-- 健康に関する気になる点 -->
+                <label for="health">健康で気になる点（複数選択可）</label>
+                <select id="health" name="health[]" multiple size="4">
+                    <option value="fatigue">疲れやすい</option>
+                    <option value="sleep">睡眠の質が悪い</option>
+                    <option value="weight">体重管理が難しい</option>
+                    <option value="diet">食生活が乱れがち</option>
+                </select>
+
+                <!-- ボタン -->
+                <button type="submit" class="btn confirm-btn">確認</button>
+
+            </form>
+
+            <div class="back-area">
+                <a href="toppage.html" class="back-link">トップページに戻る</a>
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <p>© 2026 腱康</p>
+    </footer>
+
+</body>
+</html>
