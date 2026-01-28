@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>腱康 - AIインストラクター選択</title>
+  <link rel="stylesheet" href="./css/style.css">
+  <style>
+    .ai-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .ai-card {
+      background: var(--white);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: 3px solid transparent;
+    }
+
+    .ai-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    }
+
+    .ai-card.selected {
+      border-color: var(--primary-color);
+      background: linear-gradient(135deg, #f5f7ff 0%, #ffffff 100%);
+    }
+
+    .ai-card-avatar {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 1rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    }
+
+    .ai-card.gentle .ai-card-avatar {
+      background: linear-gradient(135deg, #FFB6C1, #FFC0CB);
+    }
+
+    .ai-card.normal .ai-card-avatar {
+      background: linear-gradient(135deg, #4A90E2, #50C878);
+    }
+
+    .ai-card.strict .ai-card-avatar {
+      background: linear-gradient(135deg, #FF6B6B, #FF8C00);
+    }
+
+    .ai-card.unique .ai-card-avatar {
+      background: linear-gradient(135deg, #9B59B6, #E91E63);
+    }
+
+    .ai-card h3 {
+      margin-bottom: 0.5rem;
+      color: var(--primary-color);
+    }
+
+    .ai-personality-tag {
+      display: inline-block;
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .ai-personality-tag.gentle {
+      background: #FFE4E1;
+      color: #FF69B4;
+    }
+
+    .ai-personality-tag.normal {
+      background: #E0F2F7;
+      color: #00ACC1;
+    }
+
+    .ai-personality-tag.strict {
+      background: #FFE0E0;
+      color: #E53935;
+    }
+
+    .ai-personality-tag.unique {
+      background: #F3E5F5;
+      color: #9C27B0;
+    }
+
+    .ai-description {
+      color: var(--text-light);
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .ai-sample-message {
+      background: var(--light-bg);
+      padding: 1rem;
+      border-radius: var(--border-radius);
+      border-left: 3px solid var(--primary-color);
+      font-style: italic;
+      color: var(--text-dark);
+      margin-top: 1rem;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo-dot"></span>
+      <h1>腱康 - Kenkou</h1>
+    </div>
+    <nav class="auth">
+      <a href="dashboard.html" class="btn btn-secondary">ホームに戻る</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="container">
+      <h2 style="text-align: center; color: var(--primary-color); margin-bottom: 1rem; font-size: 2rem;">
+        AIインストラクターを選択
+      </h2>
+      <p style="text-align: center; color: var(--text-light); margin-bottom: 2rem;">
+        あなたをサポートしてくれるインストラクターを選んでください。いつでも変更できます。
+      </p>
+
+      <div class="ai-grid">
+        
+        <!-- 優しめ -->
+        <div class="ai-card gentle" data-personality="gentle">
+          <div class="ai-card-avatar">😊</div>
+          <h3>優しいトレーナー</h3>
+          <span class="ai-personality-tag gentle">優しめ</span>
+          <p class="ai-description">
+            いつも励まし、ポジティブな言葉をかけてくれます。初心者やマイペースに続けたい方におすすめです。
+          </p>
+          <div class="ai-sample-message">
+            「今日も頑張りましたね!無理せず、自分のペースで続けていきましょう♪」
+          </div>
+          <button class="btn btn-primary" style="margin-top: 1rem; width: 100%;" onclick="selectAI('gentle')">
+            選択する
+          </button>
+        </div>
+
+        <!-- 普通 -->
+        <div class="ai-card normal" data-personality="normal">
+          <div class="ai-card-avatar">🙂</div>
+          <h3>バランス型トレーナー</h3>
+          <span class="ai-personality-tag normal">普通</span>
+          <p class="ai-description">
+            励ましと的確なアドバイスをバランスよく提供します。標準的なサポートを求める方に最適です。
+          </p>
+          <div class="ai-sample-message">
+            「良いペースですね。次は距離を少し伸ばしてみましょう。」
+          </div>
+          <button class="btn btn-primary" style="margin-top: 1rem; width: 100%;" onclick="selectAI('normal')">
+            選択する
+          </button>
+        </div>
+
+        <!-- 厳しめ -->
+        <div class="ai-card strict" data-personality="strict">
+          <div class="ai-card-avatar">😤</div>
+          <h3>厳しいトレーナー</h3>
+          <span class="ai-personality-tag strict">厳しめ</span>
+          <p class="ai-description">
+            目標達成に向けて妥協なく指導します。本気でチャレンジしたい方、結果を出したい方向けです。
+          </p>
+          <div class="ai-sample-message">
+            「まだ余裕がありそうだな。もう少しペースを上げていこう!」
+          </div>
+          <button class="btn btn-primary" style="margin-top: 1rem; width: 100%;" onclick="selectAI('strict')">
+            選択する
+          </button>
+        </div>
+
+        <!-- 色物枠 -->
+        <div class="ai-card unique" data-personality="unique">
+          <div class="ai-card-avatar">🤪</div>
+          <h3>ユニークトレーナー</h3>
+          <span class="ai-personality-tag unique">色物枠</span>
+          <p class="ai-description">
+            ユーモアたっぷり!楽しく運動を続けたい方におすすめ。時には変わったアドバイスも...?
+          </p>
+          <div class="ai-sample-message">
+            「よーし!今日は走るぞー!ちなみに僕の好きな食べ物はバナナです🍌」
+          </div>
+          <button class="btn btn-primary" style="margin-top: 1rem; width: 100%;" onclick="selectAI('unique')">
+            選択する
+          </button>
+        </div>
+
+      </div>
+
+      <div style="text-align: center; margin-top: 3rem;">
+        <p style="color: var(--text-light); font-size: 0.9rem;">
+          ※ インストラクターはいつでもホーム画面から変更できます
+        </p>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <small>&copy; 2025 腱康 - Kenkou Running System</small>
+  </footer>
+
+  <script src="./js/ai-selection.js"></script>
+</body>
+</html>

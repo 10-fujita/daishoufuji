@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>腱康 - 新規会員登録</title>
+  <link rel="stylesheet" href="./css/style.css">
+  <style>
+    .register-container {
+      max-width: 700px;
+      margin: 3rem auto;
+      background: var(--white);
+      padding: 2.5rem;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+    }
+
+    .step-indicator {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    .step-indicator::before {
+      content: '';
+      position: absolute;
+      top: 15px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: #DDD;
+      z-index: 0;
+    }
+
+    .step {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: #DDD;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      color: var(--white);
+      position: relative;
+      z-index: 1;
+    }
+
+    .step.active {
+      background: var(--primary-color);
+    }
+
+    .step.completed {
+      background: var(--secondary-color);
+    }
+
+    .form-section {
+      display: none;
+    }
+
+    .form-section.active {
+      display: block;
+    }
+
+    .checkbox-group {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 0.8rem;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .btn-group button {
+      flex: 1;
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo-dot"></span>
+      <h1>腱康 - Kenkou</h1>
+    </div>
+    <nav class="auth">
+      <a href="login.html" class="btn btn-login">ログイン</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="register-container">
+      <h2 class="form-title">新規会員登録</h2>
+      
+      <div class="step-indicator">
+        <div class="step active" data-step="1">1</div>
+        <div class="step" data-step="2">2</div>
+        <div class="step" data-step="3">3</div>
+      </div>
+
+      <form id="registerForm" action="/api/auth/register" method="POST">
+        
+        <!-- ステップ1: 基本情報 -->
+        <div class="form-section active" id="step1">
+          <h3 style="margin-bottom: 1.5rem; color: var(--primary-color);">基本情報</h3>
+          
+          <div class="form-group">
+            <label for="name">お名前 *</label>
+            <input 
+              type="text" 
+              id="name" 
+              name="name" 
+              class="form-control" 
+              placeholder="山田 太郎"
+              required
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="email">メールアドレス *</label>
+            <input 
+              type="email" 
+              id="email" 
+              name="email" 
+              class="form-control" 
+              placeholder="example@email.com"
+              required
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="password">パスワード *</label>
+            <input 
+              type="password" 
+              id="password" 
+              name="password" 
+              class="form-control" 
+              placeholder="8文字以上"
+              minlength="8"
+              required
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="passwordConfirm">パスワード確認 *</label>
+            <input 
+              type="password" 
+              id="passwordConfirm" 
+              name="passwordConfirm" 
+              class="form-control" 
+              placeholder="もう一度入力"
+              required
+            >
+            <span class="error-message" id="passwordError"></span>
+          </div>
+        </div>
+
+        <!-- ステップ2: 身体情報 -->
+        <div class="form-section" id="step2">
+          <h3 style="margin-bottom: 1.5rem; color: var(--primary-color);">身体情報</h3>
+          
+          <div class="form-group">
+            <label for="height">身長 (cm) *</label>
+            <input 
+              type="number" 
+              id="height" 
+              name="height" 
+              class="form-control" 
+              placeholder="170"
+              min="100"
+              max="250"
+              required
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="weight">体重 (kg) *</label>
+            <input 
+              type="number" 
+              id="weight" 
+              name="weight" 
+              class="form-control" 
+              placeholder="65"
+              min="30"
+              max="200"
+              step="0.1"
+              required
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="exerciseLevel">普段の運動量 *</label>
+            <select id="exerciseLevel" name="exerciseLevel" class="form-select" required>
+              <option value="">選択してください</option>
+              <option value="none">ほとんど運動しない</option>
+              <option value="light">軽い運動(週1-2回)</option>
+              <option value="moderate">適度な運動(週3-4回)</option>
+              <option value="active">活発な運動(週5-6回)</option>
+              <option value="very_active">非常に活発(毎日)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="bodyType">体つき *</label>
+            <select id="bodyType" name="bodyType" class="form-select" required>
+              <option value="">選択してください</option>
+              <option value="slim">痩せ型</option>
+              <option value="normal">標準</option>
+              <option value="muscular">筋肉質</option>
+              <option value="chubby">ぽっちゃり</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- ステップ3: 健康に関する質問 -->
+        <div class="form-section" id="step3">
+          <h3 style="margin-bottom: 1.5rem; color: var(--primary-color);">健康に関する質問</h3>
+          
+          <div class="form-group">
+            <label>自身の健康に関して気になる点(複数選択可)</label>
+            <div class="checkbox-group">
+              <div class="form-check">
+                <input type="checkbox" id="concern1" name="healthConcerns" value="weight">
+                <label for="concern1">体重管理</label>
+              </div>
+              <div class="form-check">
+                <input type="checkbox" id="concern2" name="healthConcerns" value="stamina">
+                <label for="concern2">体力不足</label>
+              </div>
+              <div class="form-check">
+                <input type="checkbox" id="concern3" name="healthConcerns" value="stress">
+                <label for="concern3">ストレス</label>
+              </div>
+              <div class="form-check">
+                <input type="checkbox" id="concern4" name="healthConcerns" value="sleep">
+                <label for="concern4">睡眠の質</label>
+              </div>
+              <div class="form-check">
+                <input type="checkbox" id="concern5" name="healthConcerns" value="blood_pressure">
+                <label for="concern5">血圧</label>
+              </div>
+              <div class="form-check">
+                <input type="checkbox" id="concern6" name="healthConcerns" value="blood_sugar">
+                <label for="concern6">血糖値</label>
+              </div>
+              <div class="form-check">
+                <input type="checkbox" id="concern7" name="healthConcerns" value="cholesterol">
+                <label for="concern7">コレステロール</label>
+              </div>
+              <div class="form-check">
+                <input type="checkbox" id="concern8" name="healthConcerns" value="joint_pain">
+                <label for="concern8">関節痛</label>
+              </div>
+              <div class="form-check">
+                <input type="checkbox" id="concern9" name="healthConcerns" value="other">
+                <label for="concern9">その他</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="goals">健康目標(任意)</label>
+            <textarea 
+              id="goals" 
+              name="goals" 
+              class="form-control" 
+              rows="3"
+              placeholder="例: 3ヶ月で5kg減量したい、フルマラソン完走を目指したいなど"
+            ></textarea>
+          </div>
+
+          <div class="form-group">
+            <div class="form-check">
+              <input type="checkbox" id="terms" name="terms" required>
+              <label for="terms">
+                <a href="#" style="color: var(--primary-color);">利用規約</a>と
+                <a href="#" style="color: var(--primary-color);">プライバシーポリシー</a>に同意する
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="btn-group">
+          <button type="button" class="btn btn-secondary" id="prevBtn" style="display: none;">
+            戻る
+          </button>
+          <button type="button" class="btn btn-primary" id="nextBtn">
+            次へ
+          </button>
+          <button type="submit" class="btn btn-primary" id="submitBtn" style="display: none;">
+            登録完了
+          </button>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <small>&copy; 2025 腱康 - Kenkou Running System</small>
+  </footer>
+
+  <script src="./js/register.js"></script>
+</body>
+</html>

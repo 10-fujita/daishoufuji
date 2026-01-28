@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>腱康 - ランニング</title>
+  <link rel="stylesheet" href="./css/style.css">
+  <style>
+    body {
+      overflow: hidden;
+    }
+
+    .running-container {
+      display: flex;
+      height: calc(100vh - 70px);
+    }
+
+    .map-section {
+      flex: 1;
+      position: relative;
+    }
+
+    #runningMap {
+      width: 100%;
+      height: 100%;
+    }
+
+    .character-section {
+      width: 400px;
+      background: var(--white);
+      display: flex;
+      flex-direction: column;
+      border-left: 1px solid #DDD;
+    }
+
+    .character-display {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .character-avatar {
+      width: 150px;
+      height: 150px;
+      background: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      margin-bottom: 1rem;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    .character-message {
+      background: var(--white);
+      padding: 1.5rem;
+      border-radius: var(--border-radius);
+      color: var(--text-dark);
+      text-align: center;
+      margin-top: 1rem;
+      box-shadow: var(--shadow);
+    }
+
+    .stats-panel {
+      padding: 1.5rem;
+      background: var(--light-bg);
+    }
+
+    .stat-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.8rem 0;
+      border-bottom: 1px solid #DDD;
+    }
+
+    .stat-item:last-child {
+      border-bottom: none;
+    }
+
+    .stat-label {
+      color: var(--text-light);
+      font-size: 0.9rem;
+    }
+
+    .stat-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary-color);
+    }
+
+    .controls {
+      padding: 1.5rem;
+      background: var(--white);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .landmark-selector {
+      margin-bottom: 1rem;
+      padding: 1rem;
+      background: var(--light-bg);
+      border-radius: var(--border-radius);
+    }
+
+    .overlay-controls {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      z-index: 1000;
+      background: var(--white);
+      padding: 1rem;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+    }
+
+    @media (max-width: 768px) {
+      .running-container {
+        flex-direction: column;
+      }
+
+      .character-section {
+        width: 100%;
+        height: 300px;
+        border-left: none;
+        border-top: 1px solid #DDD;
+      }
+
+      .character-display {
+        padding: 1rem;
+      }
+
+      .character-avatar {
+        width: 80px;
+        height: 80px;
+        font-size: 3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo-dot"></span>
+      <h1>腱康 - ランニング中</h1>
+    </div>
+    <nav class="auth">
+      <button id="endRunBtn" class="btn btn-accent" style="background: var(--accent-color);">
+        ランニング終了
+      </button>
+    </nav>
+  </header>
+
+  <main class="running-container">
+    
+    <!-- 地図セクション -->
+    <div class="map-section">
+      <div id="runningMap"></div>
+      
+      <!-- 地図上のコントロール -->
+      <div class="overlay-controls">
+        <div style="margin-bottom: 0.5rem;">
+          <strong style="color: var(--primary-color);">現在地追跡中</strong>
+        </div>
+        <div style="font-size: 0.9rem; color: var(--text-light);">
+          目的地: <span id="destinationName">選択してください</span>
+        </div>
+        <div style="font-size: 0.9rem; color: var(--text-light);">
+          残り距離: <span id="remainingDistance">--</span> km
+        </div>
+      </div>
+    </div>
+
+    <!-- キャラクター & 統計セクション -->
+    <div class="character-section">
+      
+      <!-- AIキャラクター表示 -->
+      <div class="character-display">
+        <div class="character-avatar" id="runningAvatar">🏃</div>
+        <h3 style="color: var(--white); margin-bottom: 0.5rem;" id="runningAiName">トレーナーAI</h3>
+        <div class="character-message" id="runningMessage">
+          頑張って!あなたならできる!
+        </div>
+      </div>
+
+      <!-- 統計パネル -->
+      <div class="stats-panel">
+        <div class="stat-item">
+          <span class="stat-label">走行距離</span>
+          <span class="stat-value" id="currentDistance">0.00</span>
+          <span style="font-size: 0.9rem; color: var(--text-light);">km</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">走行時間</span>
+          <span class="stat-value" id="runningTime">00:00:00</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">平均ペース</span>
+          <span class="stat-value" id="averagePace">0:00</span>
+          <span style="font-size: 0.9rem; color: var(--text-light);">/km</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">消費カロリー</span>
+          <span class="stat-value" id="caloriesBurned">0</span>
+          <span style="font-size: 0.9rem; color: var(--text-light);">kcal</span>
+        </div>
+      </div>
+
+      <!-- コントロール -->
+      <div class="controls">
+        <div class="landmark-selector">
+          <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">目的地を選択</label>
+          <select id="landmarkSelect" class="form-select">
+            <option value="">選択してください</option>
+          </select>
+        </div>
+
+        <button id="startBtn" class="btn btn-primary" style="width: 100%;">
+          🏃 スタート
+        </button>
+        
+        <button id="pauseBtn" class="btn btn-secondary" style="width: 100%; display: none;">
+          ⏸️ 一時停止
+        </button>
+        
+        <button id="resumeBtn" class="btn btn-secondary" style="width: 100%; display: none;">
+          ▶️ 再開
+        </button>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Google Maps API (実際のAPIキーに置き換えてください) -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
+  <script src="./js/running.js"></script>
+</body>
+</html>
