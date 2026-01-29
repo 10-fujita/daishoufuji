@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>腱康 - イベント</title>
+  <link rel="stylesheet" href="./static/css/style.css">
+  <style>
+    .event-card {
+      background: var(--white);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+      transition: all 0.3s;
+    }
+
+    .event-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    }
+
+    .event-header {
+      padding: 1.5rem;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+    }
+
+    .event-body {
+      padding: 1.5rem;
+    }
+
+    .event-badge {
+      display: inline-block;
+      padding: 0.3rem 0.8rem;
+      border-radius: 15px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-right: 0.5rem;
+    }
+
+    .event-badge.current {
+      background: #50C878;
+      color: white;
+    }
+
+    .event-badge.upcoming {
+      background: #4A90E2;
+      color: white;
+    }
+
+    .event-badge.ended {
+      background: #7F8C8D;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo-dot"></span>
+      <h1>腱康 - Kenkou</h1>
+    </div>
+    <nav class="auth">
+      <a href="dashboard.html" class="btn btn-secondary">ホームに戻る</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="container">
+      <h2 style="text-align: center; color: var(--primary-color); margin-bottom: 2rem;">
+        🎉 イベント
+      </h2>
+
+      <!-- タブ -->
+      <div style="background: var(--white); padding: 1rem; border-radius: var(--border-radius); box-shadow: var(--shadow); margin-bottom: 2rem;">
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+          <button class="btn btn-primary" onclick="filterEvents('current')">開催中</button>
+          <button class="btn btn-secondary" onclick="filterEvents('upcoming')">予定</button>
+          <button class="btn btn-secondary" onclick="filterEvents('ended')">終了</button>
+        </div>
+      </div>
+
+      <!-- イベント一覧 -->
+      <div id="eventsContainer">
+        <p style="text-align: center; color: var(--text-light); padding: 2rem;">読み込み中...</p>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <small>&copy; 2025 腱康 - Kenkou Running System</small>
+  </footer>
+
+  <script src="./static/js/events.js"></script>
+</body>
+</html>

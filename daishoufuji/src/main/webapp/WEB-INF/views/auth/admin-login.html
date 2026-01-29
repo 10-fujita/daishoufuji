@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>腱康 - 管理者ログイン</title>
+  <link rel="stylesheet" href="./static/css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo-dot"></span>
+      <h1>腱康 - 管理者</h1>
+    </div>
+    <nav class="auth">
+      <a href="index.html" class="btn btn-secondary">ユーザーページへ</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="form-container">
+      <div style="text-align: center; margin-bottom: 2rem;">
+        <div style="font-size: 4rem; margin-bottom: 1rem;">🔐</div>
+        <h2 class="form-title">管理者ログイン</h2>
+      </div>
+      
+      <form id="adminLoginForm" action="/api/admin/login" method="POST">
+        <div class="form-group">
+          <label for="adminId">管理者ID</label>
+          <input 
+            type="text" 
+            id="adminId" 
+            name="adminId" 
+            class="form-control" 
+            placeholder="管理者IDを入力"
+            required
+            autocomplete="username"
+          >
+          <span class="error-message" id="adminIdError"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="password">パスワード</label>
+          <input 
+            type="password" 
+            id="password" 
+            name="password" 
+            class="form-control" 
+            placeholder="パスワードを入力"
+            required
+            autocomplete="current-password"
+          >
+          <span class="error-message" id="passwordError"></span>
+        </div>
+
+        <div class="form-group">
+          <div class="form-check">
+            <input type="checkbox" id="remember" name="remember">
+            <label for="remember">ログイン状態を保持する</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary" style="width: 100%;">
+            ログイン
+          </button>
+        </div>
+
+        <div style="text-align: center; margin-top: 1.5rem;">
+          <p style="color: var(--accent-color); font-size: 0.9rem;">
+            ⚠️ 管理者専用ページです。許可なくアクセスしないでください。
+          </p>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <small>&copy; 2025 腱康 - Kenkou Running System</small>
+  </footer>
+
+  <script src="./static/js/admin-login.js"></script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>腱康 - 通知</title>
+  <link rel="stylesheet" href="./static/css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo-dot"></span>
+      <h1>腱康 - Kenkou</h1>
+    </div>
+    <nav class="auth">
+      <a href="dashboard.html" class="btn btn-secondary">ホームに戻る</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="container">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+        <h2 style="color: var(--primary-color); font-size: 2rem;">
+          🔔 通知
+        </h2>
+        <button id="markAllReadBtn" class="btn btn-secondary">
+          全て既読にする
+        </button>
+      </div>
+
+      <!-- 未読通知 -->
+      <div style="background: var(--white); padding: 2rem; border-radius: var(--border-radius); box-shadow: var(--shadow); margin-bottom: 2rem;">
+        <h3 style="margin-bottom: 1.5rem; color: var(--primary-color);">
+          📬 未読の通知
+        </h3>
+        <div id="unreadNotifications">
+          <p style="text-align: center; color: var(--text-light); padding: 2rem;">読み込み中...</p>
+        </div>
+      </div>
+
+      <!-- 既読通知 -->
+      <div style="background: var(--white); padding: 2rem; border-radius: var(--border-radius); box-shadow: var(--shadow);">
+        <h3 style="margin-bottom: 1.5rem; color: var(--primary-color);">
+          📭 既読の通知
+        </h3>
+        <div id="readNotifications">
+          <p style="text-align: center; color: var(--text-light); padding: 2rem;">読み込み中...</p>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <small>&copy; 2025 腱康 - Kenkou Running System</small>
+  </footer>
+
+  <script src="./static/js/notifications.js"></script>
+</body>
+</html>

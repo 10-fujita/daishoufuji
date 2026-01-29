@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>腱康 - 管理者ダッシュボード</title>
+  <link rel="stylesheet" href="./static/css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo-dot"></span>
+      <h1>腱康 - 管理者</h1>
+    </div>
+    <nav class="auth">
+      <span style="color: var(--text-dark); margin-right: 1rem;">
+        👤 <span id="adminName">管理者</span>
+      </span>
+      <button id="adminLogoutBtn" class="btn btn-logout">ログアウト</button>
+    </nav>
+  </header>
+
+  <main class="dashboard">
+    <div class="container">
+      
+      <!-- 統計サマリー -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-value" id="totalUsers">0</div>
+          <div class="stat-label">総ユーザー数</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="activeUsers">0</div>
+          <div class="stat-label">アクティブユーザー</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="totalRunningRecords">0</div>
+          <div class="stat-label">総ランニング記録</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="totalBugReports">0</div>
+          <div class="stat-label">未対応の不具合報告</div>
+        </div>
+      </div>
+
+      <!-- 管理メニュー -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+        
+        <a href="admin-users.html" style="background: var(--white); padding: 2rem; border-radius: var(--border-radius); box-shadow: var(--shadow); text-decoration: none; text-align: center; transition: transform 0.3s;"
+           onmouseover="this.style.transform='translateY(-5px)'"
+           onmouseout="this.style.transform='translateY(0)'">
+          <div style="font-size: 3rem; margin-bottom: 1rem;">👥</div>
+          <h3 style="color: var(--primary-color); margin-bottom: 0.5rem;">ユーザー管理</h3>
+          <p style="color: var(--text-light); font-size: 0.9rem;">ユーザー一覧・詳細・編集</p>
+        </a>
+
+        <a href="admin-events.html" style="background: var(--white); padding: 2rem; border-radius: var(--border-radius); box-shadow: var(--shadow); text-decoration: none; text-align: center; transition: transform 0.3s;"
+           onmouseover="this.style.transform='translateY(-5px)'"
+           onmouseout="this.style.transform='translateY(0)'">
+          <div style="font-size: 3rem; margin-bottom: 1rem;">🎉</div>
+          <h3 style="color: var(--primary-color); margin-bottom: 0.5rem;">イベント管理</h3>
+          <p style="color: var(--text-light); font-size: 0.9rem;">イベント作成・編集・削除</p>
+        </a>
+
+        <a href="admin-achievements.html" style="background: var(--white); padding: 2rem; border-radius: var(--border-radius); box-shadow: var(--shadow); text-decoration: none; text-align: center; transition: transform 0.3s;"
+           onmouseover="this.style.transform='translateY(-5px)'"
+           onmouseout="this.style.transform='translateY(0)'">
+          <div style="font-size: 3rem; margin-bottom: 1rem;">🏆</div>
+          <h3 style="color: var(--primary-color); margin-bottom: 0.5rem;">バッジ管理</h3>
+          <p style="color: var(--text-light); font-size: 0.9rem;">達成バッジ作成・編集</p>
+        </a>
+
+        <a href="admin-landmarks.html" style="background: var(--white); padding: 2rem; border-radius: var(--border-radius); box-shadow: var(--shadow); text-decoration: none; text-align: center; transition: transform 0.3s;"
+           onmouseover="this.style.transform='translateY(-5px)'"
+           onmouseout="this.style.transform='translateY(0)'">
+          <div style="font-size: 3rem; margin-bottom: 1rem;">📍</div>
+          <h3 style="color: var(--primary-color); margin-bottom: 0.5rem;">ランドマーク管理</h3>
+          <p style="color: var(--text-light); font-size: 0.9rem;">ランドマーク追加・編集</p>
+        </a>
+
+        <a href="admin-bug-reports.html" style="background: var(--white); padding: 2rem; border-radius: var(--border-radius); box-shadow: var(--shadow); text-decoration: none; text-align: center; transition: transform 0.3s;"
+           onmouseover="this.style.transform='translateY(-5px)'"
+           onmouseout="this.style.transform='translateY(0)'">
+          <div style="font-size: 3rem; margin-bottom: 1rem;">🐛</div>
+          <h3 style="color: var(--primary-color); margin-bottom: 0.5rem;">不具合報告</h3>
+          <p style="color: var(--text-light); font-size: 0.9rem;">報告一覧・対応状況管理</p>
+        </a>
+
+        <a href="admin-statistics.html" style="background: var(--white); padding: 2rem; border-radius: var(--border-radius); box-shadow: var(--shadow); text-decoration: none; text-align: center; transition: transform 0.3s;"
+           onmouseover="this.style.transform='translateY(-5px)'"
+           onmouseout="this.style.transform='translateY(0)'">
+          <div style="font-size: 3rem; margin-bottom: 1rem;">📊</div>
+          <h3 style="color: var(--primary-color); margin-bottom: 0.5rem;">統計・分析</h3>
+          <p style="color: var(--text-light); font-size: 0.9rem;">利用状況・傾向分析</p>
+        </a>
+
+      </div>
+
+      <!-- 最近のアクティビティ -->
+      <div style="background: var(--white); padding: 2rem; border-radius: var(--border-radius); box-shadow: var(--shadow); margin-bottom: 2rem;">
+        <h3 style="margin-bottom: 1.5rem; color: var(--primary-color);">📋 最近のアクティビティ</h3>
+        <div id="recentActivity">
+          <p style="text-align: center; color: var(--text-light);">読み込み中...</p>
+        </div>
+      </div>
+
+      <!-- 最近の不具合報告 -->
+      <div style="background: var(--white); padding: 2rem; border-radius: var(--border-radius); box-shadow: var(--shadow);">
+        <h3 style="margin-bottom: 1.5rem; color: var(--primary-color);">🐛 最近の不具合報告</h3>
+        <div id="recentBugReports">
+          <p style="text-align: center; color: var(--text-light);">読み込み中...</p>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <small>&copy; 2025 腱康 - Kenkou Running System (管理者)</small>
+  </footer>
+
+  <script src="./static/js/admin-dashboard.js"></script>
+</body>
+</html>

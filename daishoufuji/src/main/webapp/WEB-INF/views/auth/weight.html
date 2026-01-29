@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>腱康 - 体重・体調管理</title>
-  <link rel="stylesheet" href="./css/style.css">
+  <title>腱康 - 体調チェック</title>
+  <link rel="stylesheet" href="./static/css/style.css">
 </head>
 <body>
   <header class="topbar">
@@ -29,33 +29,33 @@
         <form id="healthCheckForm">
           <div class="form-group">
             <label>今日の体調はいかがですか? *</label>
-            <div style="display: flex; gap: 1rem; justify-content: center; margin: 1rem 0;">
-              <label style="cursor: pointer;">
-                <input type="radio" name="healthStatus" value="excellent" required>
-                <span style="font-size: 2rem;">😄</span>
-                <div style="font-size: 0.8rem;">絶好調</div>
+            <div style="display: flex; gap: 1rem; justify-content: center; margin: 1rem 0; flex-wrap: wrap;">
+              <label style="cursor: pointer; text-align: center;">
+                <input type="radio" name="healthStatus" value="excellent" required style="display: block; margin: 0 auto 0.5rem;">
+                <span style="font-size: 3rem; display: block;">😄</span>
+                <div style="font-size: 0.9rem; font-weight: 600;">絶好調</div>
               </label>
-              <label style="cursor: pointer;">
-                <input type="radio" name="healthStatus" value="good" required>
-                <span style="font-size: 2rem;">🙂</span>
-                <div style="font-size: 0.8rem;">良好</div>
+              <label style="cursor: pointer; text-align: center;">
+                <input type="radio" name="healthStatus" value="good" required style="display: block; margin: 0 auto 0.5rem;">
+                <span style="font-size: 3rem; display: block;">🙂</span>
+                <div style="font-size: 0.9rem; font-weight: 600;">良好</div>
               </label>
-              <label style="cursor: pointer;">
-                <input type="radio" name="healthStatus" value="fair" required>
-                <span style="font-size: 2rem;">😐</span>
-                <div style="font-size: 0.8rem;">普通</div>
+              <label style="cursor: pointer; text-align: center;">
+                <input type="radio" name="healthStatus" value="fair" required style="display: block; margin: 0 auto 0.5rem;">
+                <span style="font-size: 3rem; display: block;">😐</span>
+                <div style="font-size: 0.9rem; font-weight: 600;">普通</div>
               </label>
-              <label style="cursor: pointer;">
-                <input type="radio" name="healthStatus" value="poor" required>
-                <span style="font-size: 2rem;">😷</span>
-                <div style="font-size: 0.8rem;">不調</div>
+              <label style="cursor: pointer; text-align: center;">
+                <input type="radio" name="healthStatus" value="poor" required style="display: block; margin: 0 auto 0.5rem;">
+                <span style="font-size: 3rem; display: block;">😷</span>
+                <div style="font-size: 0.9rem; font-weight: 600;">不調</div>
               </label>
             </div>
           </div>
 
           <div class="form-group">
             <label>気になる症状(複数選択可)</label>
-            <div class="checkbox-group">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.8rem;">
               <div class="form-check">
                 <input type="checkbox" id="symptom1" name="symptoms" value="muscle_pain">
                 <label for="symptom1">筋肉痛</label>
@@ -80,6 +80,14 @@
                 <input type="checkbox" id="symptom6" name="symptoms" value="insomnia">
                 <label for="symptom6">不眠</label>
               </div>
+              <div class="form-check">
+                <input type="checkbox" id="symptom7" name="symptoms" value="joint_pain">
+                <label for="symptom7">関節痛</label>
+              </div>
+              <div class="form-check">
+                <input type="checkbox" id="symptom8" name="symptoms" value="dizziness">
+                <label for="symptom8">めまい</label>
+              </div>
             </div>
           </div>
 
@@ -90,7 +98,7 @@
               id="sleepHours" 
               name="sleepHours" 
               class="form-control" 
-              placeholder="時間"
+              placeholder="例: 7.5"
               min="0"
               max="24"
               step="0.5"
@@ -103,7 +111,7 @@
               id="healthNotes" 
               name="healthNotes" 
               class="form-control" 
-              rows="3"
+              rows="4"
               placeholder="気になることがあれば記入してください"
             ></textarea>
           </div>
@@ -113,63 +121,18 @@
           </button>
         </form>
 
-        <div id="healthAdvice" style="margin-top: 1.5rem; padding: 1rem; background: var(--light-bg); border-radius: var(--border-radius); display: none;">
-          <strong style="color: var(--primary-color);">AIからのアドバイス:</strong>
-          <p id="adviceText" style="margin-top: 0.5rem;"></p>
+        <div id="healthAdvice" style="margin-top: 1.5rem; padding: 1.5rem; background: var(--light-bg); border-radius: var(--border-radius); border-left: 4px solid var(--primary-color); display: none;">
+          <strong style="color: var(--primary-color); font-size: 1.1rem;">🤖 AIからのアドバイス:</strong>
+          <p id="adviceText" style="margin-top: 0.8rem; line-height: 1.6;"></p>
         </div>
       </div>
 
-      <!-- 体重記録 -->
-      <div style="background: var(--white); padding: 2rem; border-radius: var(--border-radius); box-shadow: var(--shadow); margin-bottom: 2rem;">
-        <h2 style="color: var(--primary-color); margin-bottom: 1.5rem;">
-          ⚖️ 体重記録
-        </h2>
-        
-        <form id="weightForm">
-          <div class="form-group">
-            <label for="weight">今日の体重 (kg) *</label>
-            <input 
-              type="number" 
-              id="weight" 
-              name="weight" 
-              class="form-control" 
-              placeholder="65.5"
-              min="30"
-              max="200"
-              step="0.1"
-              required
-            >
-          </div>
-
-          <div class="form-group">
-            <label for="bodyFat">体脂肪率 (%)(任意)</label>
-            <input 
-              type="number" 
-              id="bodyFat" 
-              name="bodyFat" 
-              class="form-control" 
-              placeholder="20.5"
-              min="5"
-              max="60"
-              step="0.1"
-            >
-          </div>
-
-          <button type="submit" class="btn btn-primary" style="width: 100%;">
-            体重を記録
-          </button>
-        </form>
-      </div>
-
-      <!-- 体重推移グラフ -->
+      <!-- 最近の体調記録 -->
       <div style="background: var(--white); padding: 2rem; border-radius: var(--border-radius); box-shadow: var(--shadow);">
-        <h3 style="margin-bottom: 1.5rem; color: var(--primary-color);">体重推移グラフ</h3>
-        <div style="margin-bottom: 1rem;">
-          <button class="btn btn-secondary" onclick="loadWeightChart(7)" style="margin-right: 0.5rem;">1週間</button>
-          <button class="btn btn-secondary" onclick="loadWeightChart(30)" style="margin-right: 0.5rem;">1ヶ月</button>
-          <button class="btn btn-secondary" onclick="loadWeightChart(90)">3ヶ月</button>
+        <h3 style="margin-bottom: 1.5rem; color: var(--primary-color);">最近の体調記録</h3>
+        <div id="recentHealthChecks">
+          <p style="text-align: center; color: var(--text-light);">記録がありません</p>
         </div>
-        <canvas id="weightChart" style="max-height: 400px;"></canvas>
       </div>
 
     </div>
@@ -179,7 +142,6 @@
     <small>&copy; 2025 腱康 - Kenkou Running System</small>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
-  <script src="./js/weight-health.js"></script>
+  <script src="./static/js/health-check.js"></script>
 </body>
 </html>
